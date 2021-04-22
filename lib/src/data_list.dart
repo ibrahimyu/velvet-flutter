@@ -47,7 +47,9 @@ class VelvetDataList extends StatelessWidget {
         }
 
         if (view == DataListViewType.table) {
-          return tableBuilder!(context, data!.data);
+          return SingleChildScrollView(
+            child: tableBuilder!(context, data!.data),
+          );
         } else if (view == DataListViewType.list) {
           return ListView.builder(
             padding: padding,

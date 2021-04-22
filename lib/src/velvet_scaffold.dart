@@ -58,6 +58,8 @@ class VelvetScaffold extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: VelvetPaginator(controller: controller),
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
     );
   }
 }
