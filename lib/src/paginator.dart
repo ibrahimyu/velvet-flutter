@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import 'data_list_ctrl.dart';
 
-class VelvetPaginator extends GetView<DataListController> {
-  final DataListController controller;
+class VelvetPaginator extends GetView<DataController> {
+  final DataController controller;
   const VelvetPaginator({
     Key? key,
     required this.controller,

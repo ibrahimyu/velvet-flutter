@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+/// An appbar for data list.
 class VelvetAppBar extends StatefulWidget with PreferredSizeWidget {
+  /// The title will be displayed on the AppBar.
   final String? title;
+
+  /// You can put additional actions in the AppBar.
+  /// The default actions are Search and Filter.
   final List<Widget>? actions;
   final ValueChanged<String>? onSearch;
   final VoidCallback? onRefresh;
@@ -39,7 +44,11 @@ class _VelvetAppBarState extends State<VelvetAppBar> {
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.cancel),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      isSearching = !isSearching;
+                    });
+                  },
                 ),
               ),
               onEditingComplete: () => doSearch(),

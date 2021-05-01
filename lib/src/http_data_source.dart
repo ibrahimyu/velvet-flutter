@@ -18,7 +18,7 @@ class HttpDataSource extends DataSource {
         'page': data?.currentPage.toString() ?? '',
       });
 
-    print('Getting data: ' + url);
+    print('Getting data: ' + url + queryMap.toString());
     var response = await Api().get(url, query: queryMap);
 
     if (response.hasError && onError != null) {

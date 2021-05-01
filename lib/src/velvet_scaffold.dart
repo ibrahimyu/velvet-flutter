@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'paginator.dart';
 import 'data_list_ctrl.dart';
-import 'smart_appbar.dart';
+import 'app_bar.dart';
 import 'data_list.dart';
 
 import 'types.dart';
@@ -13,13 +13,14 @@ class VelvetScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final bool showAppBar;
-  //final DataSource source;
   final DataBuilder<Map<String, dynamic>>? itemBuilder;
   final DataBuilder<List>? tableBuilder;
-  final DataListController controller;
+  final DataController controller;
 
   final String emptyText;
   final EdgeInsetsGeometry? padding;
+
+  final List<Widget>? actions;
 
   VelvetScaffold({
     Key? key,
@@ -27,12 +28,12 @@ class VelvetScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.showAppBar = false,
-    //required this.source,
     this.itemBuilder,
     this.tableBuilder,
     this.emptyText = 'No data.',
     this.padding,
     required this.controller,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -47,6 +48,7 @@ class VelvetScaffold extends StatelessWidget {
           controller.searchQuery = q;
           controller.refresh();
         },
+        actions: actions,
       ),
       body: Obx(
         () => VelvetDataList(
