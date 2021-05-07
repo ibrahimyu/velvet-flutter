@@ -18,11 +18,14 @@ class HttpDataSource extends DataSource {
         'page': data?.currentPage.toString() ?? '',
       });
 
-    print('Getting data: ' + url + queryMap.toString());
     var response = await Api().get(url, query: queryMap);
 
-    if (response.hasError && onError != null) {
-      onError(response.body);
+    if (response.hasError) {
+      print('Getting data: ' + url + queryMap.toString());
+
+      if (onError != null) {
+        onError(response.body);
+      }
 
       return null;
     }
@@ -30,5 +33,44 @@ class HttpDataSource extends DataSource {
     data = PaginatedData.fromMap(response.body);
 
     return data;
+  }
+
+  Future<bool> delete(dynamic id, {ValueChanged? onError}) async {
+    var response = await Api().delete('$url/$id');
+
+    if (response.hasError) {
+      if (onError != null) {
+        onError(response.body);
+      }
+      return false;
+    }
+
+    return true;
+  }
+
+  Future store(Map<String, dynamic> data, {ValueChanged? onError}) async {
+    var response = await Api().post('$url', data);
+
+    if (response.hasError) {
+      if (onError != null) {
+        onError(response.body);
+      }
+      return false;
+    }
+
+    return response.body;
+  }
+
+  Future find(dynamic id, {ValueChanged? onError}) async {
+    var response = await Api().get('$url/$id');
+
+    if (response.hasError) {
+      if (onError != null) {
+        onError(response.body);
+      }
+      return false;
+    }
+
+    return response.body;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'data_list_ctrl.dart';
+import 'data_ctrl.dart';
 
 class VelvetPaginator extends GetView<DataController> {
   final DataController controller;

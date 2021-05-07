@@ -1,7 +1,7 @@
 library velvet;
 
 export 'src/data_list.dart';
-export 'src/data_list_ctrl.dart';
+export 'src/data_ctrl.dart';
 export 'src/data_source.dart';
 export 'src/http_data_source.dart';
 export 'src/paginated_data.dart';

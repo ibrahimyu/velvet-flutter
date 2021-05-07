@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'paginator.dart';
-import 'data_list_ctrl.dart';
+import 'data_ctrl.dart';
 import 'app_bar.dart';
 import 'data_list.dart';
 
@@ -16,6 +16,7 @@ class VelvetScaffold extends StatelessWidget {
   final DataBuilder<Map<String, dynamic>>? itemBuilder;
   final DataBuilder<List>? tableBuilder;
   final DataController controller;
+  final DataListViewType view;
 
   final String emptyText;
   final EdgeInsetsGeometry? padding;
@@ -34,6 +35,7 @@ class VelvetScaffold extends StatelessWidget {
     this.padding,
     required this.controller,
     this.actions,
+    this.view = DataListViewType.table,
   }) : super(key: key);
 
   @override
@@ -57,6 +59,7 @@ class VelvetScaffold extends StatelessWidget {
           tableBuilder: tableBuilder,
           emptyText: emptyText,
           data: controller.data.value,
+          view: view,
         ),
       ),
       bottomNavigationBar: VelvetPaginator(controller: controller),
