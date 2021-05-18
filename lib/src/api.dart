@@ -1,14 +1,11 @@
 import 'package:get/get_connect/connect.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_storage/get_storage.dart';
 
 class Api extends GetConnect {
-  static String get prefix {
-    return env['API_BASE_URL'] ?? '';
-  }
+  static String prefix = '';
 
   Api() {
-    httpClient.baseUrl = env['API_BASE_URL'];
+    httpClient.baseUrl = Api.prefix;
     httpClient.defaultDecoder = (x) => x;
     httpClient.addRequestModifier<dynamic>((request) async {
       String token = GetStorage().read('api_token') ?? '';

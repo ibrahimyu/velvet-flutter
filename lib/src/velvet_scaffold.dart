@@ -9,18 +9,34 @@ import 'data_list.dart';
 import 'types.dart';
 
 class VelvetScaffold extends StatelessWidget {
+  /// Title shown in the AppBar. Will be replaced when searching.
   final String? title;
+
+  /// Copied from Scaffold.
   final Widget? floatingActionButton;
+
+  /// Copied from Scaffold.
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+
+  /// Determines if the AppBar should be shown or not. Defaults to true.
   final bool showAppBar;
+
+  /// Shows how to render the data in ListView.
   final DataBuilder<Map<String, dynamic>>? itemBuilder;
+
+  /// Shows how to render data in DataTable.
   final DataBuilder<List>? tableBuilder;
+
+  /// The controller responsible to control this VelvetScaffold.
   final DataController controller;
   final DataListViewType view;
 
   final String emptyText;
+
+  /// ListView or datatable padding
   final EdgeInsetsGeometry? padding;
 
+  /// Extra actions to be included in AppBar's actions.
   final List<Widget>? actions;
 
   VelvetScaffold({
@@ -44,11 +60,11 @@ class VelvetScaffold extends StatelessWidget {
       appBar: VelvetAppBar(
         title: title,
         onRefresh: () {
-          controller.refresh();
+          controller.reload();
         },
         onSearch: (q) {
           controller.searchQuery = q;
-          controller.refresh();
+          controller.reload();
         },
         actions: actions,
       ),

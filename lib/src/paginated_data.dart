@@ -24,8 +24,8 @@ class PaginatedData {
       data: map['data'],
       currentPage: map['current_page'],
       totalPage: map['last_page'],
-      from: map['from'],
-      to: map['to'],
+      from: map['from'] ?? 1,
+      to: map['to'] ?? 1,
       total: map['total'],
     );
   }

@@ -32,7 +32,7 @@ class VelvetPaginator extends GetView<DataController> {
                       onPressed: () {
                         if (controller.data.value!.currentPage > 1) {
                           controller.data.value!.currentPage--;
-                          controller.refresh();
+                          controller.reload();
                         }
                       },
                     ),
@@ -44,7 +44,7 @@ class VelvetPaginator extends GetView<DataController> {
                         if (controller.data.value!.currentPage <
                             controller.data.value!.totalPage) {
                           controller.data.value!.currentPage++;
-                          controller.refresh();
+                          controller.reload();
                         }
                       },
                     ),
