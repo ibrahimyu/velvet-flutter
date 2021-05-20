@@ -61,6 +61,20 @@ class HttpDataSource extends DataSource {
     return response.body;
   }
 
+  Future update(dynamic id, Map<String, dynamic> data,
+      {ValueChanged? onError}) async {
+    var response = await Api().put('$url/$id', data);
+
+    if (response.hasError) {
+      if (onError != null) {
+        onError(response.body);
+      }
+      return false;
+    }
+
+    return response.body;
+  }
+
   Future find(dynamic id, {ValueChanged? onError}) async {
     var response = await Api().get('$url/$id');
 
