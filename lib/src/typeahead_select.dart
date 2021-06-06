@@ -3,9 +3,9 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:velvet/src/api.dart';
 import 'package:velvet/velvet.dart';
 
-class TypeaheadSelect<T> extends StatefulWidget {
-  final T? initialValue;
-  final ValueChanged<T?> onChanged;
+class TypeaheadSelect extends StatefulWidget {
+  final Map<String, dynamic>? initialValue;
+  final ValueChanged<Map<String, dynamic>?> onChanged;
   final DataBuilder selectionBuilder;
   final String? labelText;
   final String url;
@@ -25,8 +25,14 @@ class TypeaheadSelect<T> extends StatefulWidget {
   _TypeaheadSelectState createState() => _TypeaheadSelectState();
 }
 
-class _TypeaheadSelectState<T> extends State<TypeaheadSelect<T>> {
-  T? value;
+class _TypeaheadSelectState extends State<TypeaheadSelect> {
+  Map<String, dynamic>? value;
+
+  @override
+  void initState() {
+    super.initState();
+    value = widget.initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +52,15 @@ class _TypeaheadSelectState<T> extends State<TypeaheadSelect<T>> {
       );
     } else {
       var query = {'paginate': 'false'}..addAll(widget.query ?? {});
-      return TypeAheadFormField(
+      return TypeAheadFormField<Map<String, dynamic>>(
         textFieldConfiguration: TextFieldConfiguration(
           decoration: InputDecoration(labelText: widget.labelText),
         ),
         suggestionsCallback: (pattern) async {
           var response = await Api().get(widget.url, query: query);
-          var list = response.body;
+          var list = (response.body as List)
+              .map((i) => Map<String, dynamic>.from(i))
+              .toList(); //as List<Map<String, dynamic>>);
           return list;
         },
         itemBuilder: (context, suggest) {
@@ -60,9 +68,9 @@ class _TypeaheadSelectState<T> extends State<TypeaheadSelect<T>> {
         },
         onSuggestionSelected: (suggest) {
           setState(() {
-            value = suggest as T;
+            value = suggest;
           });
-          widget.onChanged(suggest as T);
+          widget.onChanged(suggest);
         },
       );
     }

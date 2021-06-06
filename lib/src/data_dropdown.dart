@@ -10,6 +10,8 @@ class DataDropdown<T> extends StatefulWidget {
   final ChoiceBuilder<T> choiceBuilder;
   final HttpDataSource source;
   final String? hintText;
+  final bool nullable;
+
   DataDropdown({
     Key? key,
     this.value,
@@ -17,6 +19,7 @@ class DataDropdown<T> extends StatefulWidget {
     required this.choiceBuilder,
     required this.source,
     this.hintText,
+    this.nullable = false,
   }) : super(key: key);
 
   @override
@@ -38,7 +41,7 @@ class _DataDropdownState<T> extends State<DataDropdown<T>> {
       value: value,
       hint: widget.hintText != null ? Text('Filter') : null,
       items: [
-        DropdownMenuItem<T>(child: Text('All'), value: null),
+        DropdownMenuItem<T>(child: Text(widget.hintText ?? 'All'), value: null),
         ...result
             .map(
               (r) => widget.choiceBuilder(context, r),
