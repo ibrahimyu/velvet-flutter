@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -19,7 +20,7 @@ class Api extends GetConnect {
 
     httpClient.addResponseModifier((request, response) {
       if (response.hasError) {
-        print(response.body);
+        Get.snackbar('Error', 'Terjadi kesalahan. Silakan coba kembali.');
       }
     });
   }

@@ -6,11 +6,12 @@ class VelvetDataTable extends StatelessWidget {
   final List<DataColumn> columns;
   final RowBuilder rowBuilder;
 
-  VelvetDataTable({
+  const VelvetDataTable({
+    Key? key,
     required this.controller,
     required this.columns,
     required this.rowBuilder,
-  });
+  }) : super(key: key);
 
   @override
   DataTable build(BuildContext context) {
@@ -19,7 +20,7 @@ class VelvetDataTable extends StatelessWidget {
         ...columns,
         // This should allow for item actions and multiple actions.
         if (controller.multi.value == false)
-          DataColumn(
+          const DataColumn(
             label: Text('Actions'),
           ),
       ],

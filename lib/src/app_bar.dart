@@ -38,12 +38,12 @@ class _VelvetAppBarState extends State<VelvetAppBar> {
               controller: queryCtrl,
               decoration: InputDecoration(
                 hintText: 'Search',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   fontStyle: FontStyle.italic,
                   color: Colors.white,
                 ),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.cancel),
+                  icon: const Icon(Icons.cancel),
                   onPressed: () {
                     setState(() {
                       isSearching = !isSearching;
@@ -58,7 +58,8 @@ class _VelvetAppBarState extends State<VelvetAppBar> {
       actions: [
         if (widget.actions != null) ...widget.actions!,
         IconButton(
-          icon: isSearching ? Icon(Icons.cancel) : Icon(Icons.search),
+          icon:
+              isSearching ? const Icon(Icons.cancel) : const Icon(Icons.search),
           onPressed: () {
             setState(() {
               isSearching = !isSearching;
@@ -66,7 +67,7 @@ class _VelvetAppBarState extends State<VelvetAppBar> {
           },
         ),
         IconButton(
-          icon: Icon(Icons.refresh),
+          icon: const Icon(Icons.refresh),
           onPressed: () {
             if (widget.onRefresh != null) widget.onRefresh!();
           },
@@ -76,7 +77,7 @@ class _VelvetAppBarState extends State<VelvetAppBar> {
   }
 
   void doSearch() {
-    if (widget.onSearch != null && queryCtrl.text.length > 0) {
+    if (widget.onSearch != null && queryCtrl.text.isNotEmpty) {
       widget.onSearch!(queryCtrl.text);
     }
   }

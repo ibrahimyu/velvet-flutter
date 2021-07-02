@@ -18,24 +18,25 @@ class VelvetDataList extends StatelessWidget {
 
   final DataListViewType view;
 
-  VelvetDataList({
+  const VelvetDataList({
     required this.data,
+    Key? key,
     this.itemBuilder,
     this.tableBuilder,
     this.emptyText = 'Nothing here yet.',
     this.padding,
     this.view = DataListViewType.table,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
         if (data == null) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
-        if (data!.data.length == 0) {
+        if (data!.data.isEmpty) {
           return Center(
             child: Text(emptyText),
           );
@@ -59,7 +60,7 @@ class VelvetDataList extends StatelessWidget {
           );
         }
 
-        return Center(
+        return const Center(
           child: Text('No view is selected.'),
         );
       },

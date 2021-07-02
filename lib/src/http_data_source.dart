@@ -9,6 +9,7 @@ class HttpDataSource extends DataSource {
 
   HttpDataSource({required this.url});
 
+  @override
   Future<PaginatedData?> getData({
     Map<String, String>? query,
     ValueChanged<String>? onError,
@@ -21,8 +22,6 @@ class HttpDataSource extends DataSource {
     var response = await Api().get(url, query: queryMap);
 
     if (response.hasError) {
-      print('Getting data: ' + url + queryMap.toString());
-
       if (onError != null) {
         onError(response.body);
       }
@@ -49,7 +48,7 @@ class HttpDataSource extends DataSource {
   }
 
   Future store(Map<String, dynamic> data, {ValueChanged? onError}) async {
-    var response = await Api().post('$url', data);
+    var response = await Api().post(url, data);
 
     if (response.hasError) {
       if (onError != null) {

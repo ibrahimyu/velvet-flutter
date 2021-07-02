@@ -39,7 +39,7 @@ class VelvetScaffold extends StatelessWidget {
   /// Extra actions to be included in AppBar's actions.
   final List<Widget>? actions;
 
-  VelvetScaffold({
+  const VelvetScaffold({
     Key? key,
     this.title,
     this.floatingActionButton,

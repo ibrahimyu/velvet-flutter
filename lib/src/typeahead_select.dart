@@ -11,7 +11,7 @@ class TypeaheadSelect extends StatefulWidget {
   final String url;
   final Map<String, String>? query;
 
-  TypeaheadSelect({
+  const TypeaheadSelect({
     Key? key,
     this.initialValue,
     required this.onChanged,
@@ -37,18 +37,34 @@ class _TypeaheadSelectState extends State<TypeaheadSelect> {
   @override
   Widget build(BuildContext context) {
     if (value != null) {
-      return Row(
-        children: [
-          Expanded(child: widget.selectionBuilder(context, value)),
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  value = null;
-                });
-                widget.onChanged(null);
-              },
-              icon: Icon(Icons.cancel))
-        ],
+      return Container(
+        decoration: BoxDecoration(
+          color: const Color(0xfff2f4f9),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (widget.labelText != null)
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Text(widget.labelText ?? ''),
+              ),
+            Row(
+              children: [
+                Expanded(child: widget.selectionBuilder(context, value)),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        value = null;
+                      });
+                      widget.onChanged(null);
+                    },
+                    icon: const Icon(Icons.cancel))
+              ],
+            ),
+          ],
+        ),
       );
     } else {
       var query = {'paginate': 'false'}..addAll(widget.query ?? {});

@@ -12,7 +12,7 @@ class DataDropdown<T> extends StatefulWidget {
   final String? hintText;
   final bool nullable;
 
-  DataDropdown({
+  const DataDropdown({
     Key? key,
     this.value,
     required this.onChanged,
@@ -39,7 +39,7 @@ class _DataDropdownState<T> extends State<DataDropdown<T>> {
   Widget build(BuildContext context) {
     return DropdownButton<T>(
       value: value,
-      hint: widget.hintText != null ? Text('Filter') : null,
+      hint: widget.hintText != null ? const Text('Filter') : null,
       items: [
         DropdownMenuItem<T>(child: Text(widget.hintText ?? 'All'), value: null),
         ...result

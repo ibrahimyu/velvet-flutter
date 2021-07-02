@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'data_ctrl.dart';
 
-class VelvetPaginator extends GetView<DataController> {
+class VelvetPaginator extends StatelessWidget {
   final DataController controller;
   const VelvetPaginator({
     Key? key,
@@ -14,7 +14,7 @@ class VelvetPaginator extends GetView<DataController> {
   Widget build(BuildContext context) {
     return Obx(
       () => BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: Container(
           child: controller.data.value != null
               ? Row(
@@ -28,7 +28,7 @@ class VelvetPaginator extends GetView<DataController> {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.arrow_left),
+                      icon: const Icon(Icons.arrow_left),
                       onPressed: () {
                         if (controller.data.value!.currentPage > 1) {
                           controller.data.value!.currentPage--;
@@ -39,7 +39,7 @@ class VelvetPaginator extends GetView<DataController> {
                     Text(
                         "Page ${controller.data.value!.currentPage} of ${controller.data.value!.totalPage}"),
                     IconButton(
-                      icon: Icon(Icons.arrow_right),
+                      icon: const Icon(Icons.arrow_right),
                       onPressed: () {
                         if (controller.data.value!.currentPage <
                             controller.data.value!.totalPage) {

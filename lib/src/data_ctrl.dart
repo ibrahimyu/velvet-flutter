@@ -32,7 +32,7 @@ class DataController extends GetxController {
   /// This is for maintaining states.
   var multi = false.obs;
   var sortAscending = false.obs;
-  Set selected = Set();
+  Set selected = {};
 
   Rx<int?> sortColumnIndex = Rx<int?>(null);
 
