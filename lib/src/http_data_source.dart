@@ -6,15 +6,17 @@ import 'paginated_data.dart';
 
 class HttpDataSource extends DataSource {
   final String url;
+  final Map<String, dynamic>? query;
 
-  HttpDataSource({required this.url});
+  HttpDataSource({required this.url, this.query});
 
   @override
   Future<PaginatedData?> getData({
-    Map<String, String>? query,
+    Map<String, dynamic>? query,
     ValueChanged<String>? onError,
   }) async {
-    Map<String, String> queryMap = (query ?? {})
+    Map<String, dynamic> queryMap = (this.query ?? {})
+      ..addAll(query ?? {})
       ..addAll({
         'page': data?.currentPage.toString() ?? '',
       });
@@ -25,6 +27,9 @@ class HttpDataSource extends DataSource {
       if (onError != null) {
         onError(response.body);
       }
+
+      // ignore: avoid_print
+      print(response.body);
 
       return null;
     }
