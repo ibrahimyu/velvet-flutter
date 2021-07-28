@@ -27,10 +27,6 @@ class HttpDataSource extends DataSource {
       if (onError != null) {
         onError(response.body);
       }
-
-      // ignore: avoid_print
-      print(response.body);
-
       return null;
     }
 

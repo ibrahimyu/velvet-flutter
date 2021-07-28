@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -15,6 +16,14 @@ class Api extends GetConnect {
       request.headers['Authorization'] = 'Bearer $token';
 
       return request;
+    });
+
+    httpClient.addResponseModifier((request, response) {
+      if (response.hasError) {
+        log(response.bodyString ?? 'Error HTTP');
+      }
+
+      return response;
     });
   }
 }
