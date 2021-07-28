@@ -44,7 +44,7 @@ class VelvetScaffold extends StatelessWidget {
     this.title,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
-    this.showAppBar = false,
+    this.showAppBar = true,
     this.itemBuilder,
     this.tableBuilder,
     this.emptyText = 'No data.',
@@ -57,17 +57,19 @@ class VelvetScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: VelvetAppBar(
-        title: title,
-        onRefresh: () {
-          controller.reload();
-        },
-        onSearch: (q) {
-          controller.searchQuery = q;
-          controller.reload();
-        },
-        actions: actions,
-      ),
+      appBar: showAppBar
+          ? VelvetAppBar(
+              title: title,
+              onRefresh: () {
+                controller.reload();
+              },
+              onSearch: (q) {
+                controller.searchQuery = q;
+                controller.reload();
+              },
+              actions: actions,
+            )
+          : null,
       body: Obx(
         () => VelvetDataList(
           padding: padding,

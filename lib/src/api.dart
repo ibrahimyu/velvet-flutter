@@ -9,24 +9,13 @@ class Api extends GetConnect {
 
   Api() {
     httpClient.baseUrl = Api.prefix;
-    //httpClient.defaultDecoder = (x) => x;
     httpClient.addRequestModifier<dynamic>((request) async {
       String token = GetStorage().read('api_token') ?? '';
 
-      //request.headers['Content-Type'] = 'application/json';
-      //request.headers['Accept'] = 'application/json';
       request.headers['Authorization'] = 'Bearer $token';
 
       return request;
     });
-
-    /*httpClient.addResponseModifier((request, response) {
-      if (response.hasError) {
-        Get.snackbar('Error', 'Terjadi kesalahan. Silakan coba kembali.');
-        // ignore: avoid_print
-        print(response.body);
-      }
-    });*/
   }
 }
 

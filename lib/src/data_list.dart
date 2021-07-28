@@ -17,8 +17,9 @@ class VelvetDataList extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   final DataListViewType view;
+  final _scrollCtrl = ScrollController();
 
-  const VelvetDataList({
+  VelvetDataList({
     required this.data,
     Key? key,
     this.itemBuilder,
@@ -42,27 +43,20 @@ class VelvetDataList extends StatelessWidget {
           );
         }
 
-        if (tableBuilder != null && itemBuilder != null) {
-          // if both builder exist, take the value from variable.
-          // otherwise just use supplied builder.
-        }
-
-        if (view == DataListViewType.table) {
+        if (view == DataListViewType.table && tableBuilder != null) {
           return SingleChildScrollView(
+            controller: _scrollCtrl,
             child: tableBuilder!(context, data!.data),
           );
-        } else if (view == DataListViewType.list) {
+        } else {
           return ListView.builder(
+            controller: _scrollCtrl,
             padding: padding,
             itemBuilder: (context, index) =>
                 itemBuilder!(context, data!.data[index]),
             itemCount: data!.data.length,
           );
         }
-
-        return const Center(
-          child: Text('No view is selected.'),
-        );
       },
     );
   }
