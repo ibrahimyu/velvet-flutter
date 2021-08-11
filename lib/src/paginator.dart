@@ -24,7 +24,9 @@ class VelvetPaginator extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                            'Showing ${controller.data.value!.from} - ${controller.data.value!.to}, ${controller.data.value!.total} total'),
+                          'Menampilkan ${controller.data.value!.from} - ${controller.data.value!.to}, total ${controller.data.value!.total}',
+                          style: const TextStyle(fontSize: 12.0),
+                        ),
                       ),
                     ),
                     IconButton(
@@ -37,7 +39,9 @@ class VelvetPaginator extends StatelessWidget {
                       },
                     ),
                     Text(
-                        "Page ${controller.data.value!.currentPage} of ${controller.data.value!.totalPage}"),
+                      "Halaman ${controller.data.value!.currentPage} dari ${controller.data.value!.totalPage}",
+                      style: const TextStyle(fontSize: 12.0),
+                    ),
                     IconButton(
                       icon: const Icon(Icons.arrow_right),
                       onPressed: () {
