@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velvet/velvet.dart';
 
 import 'types.dart';
@@ -43,7 +44,7 @@ class VelvetDataList extends StatelessWidget {
           );
         }
 
-        if (view == DataListViewType.table && tableBuilder != null) {
+        if (!GetPlatform.isMobile && this.tableBuilder != null) {
           return SingleChildScrollView(
             controller: _scrollCtrl,
             child: tableBuilder!(context, data!.data),
