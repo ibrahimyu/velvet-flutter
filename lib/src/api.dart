@@ -34,7 +34,7 @@ Map<String, dynamic> stripNull(Map<String, dynamic> map) {
       return true;
     }
 
-    if (value is String && value.isEmpty) {
+    if (value is String && (value.isEmpty || value == 'null')) {
       return true;
     }
 
