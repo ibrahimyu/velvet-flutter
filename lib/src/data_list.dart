@@ -44,20 +44,24 @@ class VelvetDataList extends StatelessWidget {
           );
         }
 
-        if (!GetPlatform.isMobile && this.tableBuilder != null) {
-          return SingleChildScrollView(
-            controller: _scrollCtrl,
-            child: tableBuilder!(context, data!.data),
-          );
-        } else {
-          return ListView.builder(
-            controller: _scrollCtrl,
-            padding: padding,
-            itemBuilder: (context, index) =>
-                itemBuilder!(context, data!.data[index]),
-            itemCount: data!.data.length,
-          );
-        }
+        return OrientationBuilder(
+          builder: (context, orientation) {
+            if (orientation == Orientation.landscape && tableBuilder != null) {
+              return SingleChildScrollView(
+                controller: _scrollCtrl,
+                child: tableBuilder!(context, data!.data),
+              );
+            } else {
+              return ListView.builder(
+                controller: _scrollCtrl,
+                padding: padding,
+                itemBuilder: (context, index) =>
+                    itemBuilder!(context, data!.data[index]),
+                itemCount: data!.data.length,
+              );
+            }
+          },
+        );
       },
     );
   }
