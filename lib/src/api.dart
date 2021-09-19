@@ -26,6 +26,10 @@ class Api extends GetConnect {
       return response;
     });
   }
+
+  static String getToken() {
+    return GetStorage().read('api_token') ?? '';
+  }
 }
 
 Map<String, dynamic> stripNull(Map<String, dynamic> map) {
