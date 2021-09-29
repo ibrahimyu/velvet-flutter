@@ -30,6 +30,13 @@ class Api extends GetConnect {
   static String getToken() {
     return GetStorage().read('api_token') ?? '';
   }
+
+  Future<Response> uploadFile(String urlPath, List<int> file) {
+    final form = FormData({
+      'file': MultipartFile(file, filename: 'file'),
+    });
+    return post(urlPath, form);
+  }
 }
 
 Map<String, dynamic> stripNull(Map<String, dynamic> map) {
