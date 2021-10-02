@@ -13,6 +13,7 @@ class Api extends GetConnect {
     httpClient.addRequestModifier<dynamic>((request) async {
       String token = GetStorage().read('api_token') ?? '';
 
+      request.headers['Accept'] = 'application/json';
       request.headers['Authorization'] = 'Bearer $token';
 
       return request;
