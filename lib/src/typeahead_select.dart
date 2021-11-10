@@ -10,6 +10,7 @@ class TypeaheadSelect extends StatefulWidget {
   final String? labelText;
   final String url;
   final Map<String, String>? query;
+  final bool nullable;
 
   const TypeaheadSelect({
     Key? key,
@@ -19,6 +20,7 @@ class TypeaheadSelect extends StatefulWidget {
     this.labelText,
     required this.url,
     this.query,
+    this.nullable = true,
   }) : super(key: key);
 
   @override
@@ -53,14 +55,16 @@ class _TypeaheadSelectState extends State<TypeaheadSelect> {
             Row(
               children: [
                 Expanded(child: widget.selectionBuilder(context, value)),
-                IconButton(
+                if (widget.nullable)
+                  IconButton(
                     onPressed: () {
                       setState(() {
                         value = null;
                       });
                       widget.onChanged(null);
                     },
-                    icon: const Icon(Icons.cancel))
+                    icon: const Icon(Icons.cancel),
+                  )
               ],
             ),
           ],
