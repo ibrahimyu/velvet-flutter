@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:velvet/velvet.dart';
 
-import 'types.dart';
-
 enum DataListViewType {
   list,
   table,

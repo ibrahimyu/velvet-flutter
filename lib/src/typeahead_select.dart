@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:velvet/src/api.dart';
 import 'package:velvet/velvet.dart';
 
 class TypeaheadSelect extends StatefulWidget {
