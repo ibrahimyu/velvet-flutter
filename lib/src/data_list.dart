@@ -15,9 +15,8 @@ class VelvetDataList extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   final DataListViewType view;
-  final _scrollCtrl = ScrollController();
 
-  VelvetDataList({
+  const VelvetDataList({
     required this.data,
     Key? key,
     this.itemBuilder,
@@ -45,12 +44,16 @@ class VelvetDataList extends StatelessWidget {
           builder: (context, orientation) {
             if (orientation == Orientation.landscape && tableBuilder != null) {
               return SingleChildScrollView(
-                controller: _scrollCtrl,
-                child: tableBuilder!(context, data!.data),
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: ScrollController(),
+                  child: tableBuilder!(context, data!.data),
+                ),
               );
             } else {
               return ListView.builder(
-                controller: _scrollCtrl,
+                controller: ScrollController(),
                 padding: padding,
                 itemBuilder: (context, index) =>
                     itemBuilder!(context, data!.data[index]),
